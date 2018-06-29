@@ -58,13 +58,20 @@ a logged-in site administrator
   Enable autologin as  Site Administrator
 
 a StripeProduct 'Example Product'
-  Create content  type=StripeProduct  id=example-product  title=Example Product
+  Create content
+  ...  type=StripeProduct
+  ...  id=example-product
+  ...  title=Example Product
+
+a StripePlan 'Example Plan'
+  Create content
+  ...  type=StripePlan
+  ...  id=example-plan
+  ...  title=Example Plan
+  ...  container=/plone/example-product
 
 an add StripePlan form
   Go To  ${PLONE_URL}/example-product/++add++StripePlan
-
-a StripePlan 'Example Plan'
-  Create content  type=StripePlan  id=example-plan  title=Example Plan  container=/plone/example-product
 
 # --- WHEN -------------------------------------------------------------------
 

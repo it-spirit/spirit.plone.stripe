@@ -60,16 +60,27 @@ a logged-in site administrator
   Enable autologin as  Site Administrator
 
 a StripeProduct 'Example Product'
-  Create content  type=StripeProduct  id=example-product  title=Example Product
+  Create content
+  ...  type=StripeProduct
+  ...  id=example-product
+  ...  title=Example Product
 
 a StripePlan 'Example Plan'
-  Create content  type=StripePlan  id=example-plan  title=Example Plan  container=/plone/example-product
+  Create content
+  ...  type=StripePlan
+  ...  id=example-plan
+  ...  title=Example Plan
+  ...  container=/plone/example-product
+
+a StripeInterval 'Example Interval'
+  Create content
+  ...  type=StripeInterval
+  ...  id=example-interval
+  ...  title=Example Interval
+  ...  container=/plone/example-product/example-plan
 
 an add StripeInterval form
   Go To  ${PLONE_URL}/example-product/example-plan/++add++StripeInterval
-
-a StripeInterval 'Example Interval'
-  Create content  type=StripeInterval  id=example-interval  title=Example Interval  container=/plone/example-product/example-plan
 
 # --- WHEN -------------------------------------------------------------------
 

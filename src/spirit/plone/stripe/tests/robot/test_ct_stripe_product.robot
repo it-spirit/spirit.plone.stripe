@@ -55,11 +55,14 @@ Scenario: As a site administrator I can view a Stripe Product
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
+a Stripe Product 'Example Product'
+  Create content
+  ...  type=StripeProduct
+  ...  id=example-product
+  ...  title=Example Product
+
 an add StripeProduct form
   Go To  ${PLONE_URL}/++add++StripeProduct
-
-a Stripe Product 'Example Product'
-  Create content  type=StripeProduct  id=example-product  title=Example Product
 
 # --- WHEN -------------------------------------------------------------------
 
