@@ -36,16 +36,20 @@ Test Teardown  Close all browsers
 
 Scenario: As a site administrator I can add a StripeInterval
   Given a logged-in site administrator
-    and an add StripePlan form
-   When I type 'My StripeInterval' into the title field
+    and a StripeProduct 'Example Product'
+    and a StripePlan 'Example Plan'
+    and an add StripeInterval form
+   When I type 'My Stripe Interval' into the title field
     and I submit the form
-   Then a StripeInterval with the title 'My StripeInterval' has been created
+   Then a StripeInterval with the title 'My Stripe Interval' has been created
 
 Scenario: As a site administrator I can view a StripeInterval
   Given a logged-in site administrator
-    and a StripeInterval 'My StripeInterval'
+    and a StripeProduct 'Example Product'
+    and a StripePlan 'Example Plan'
+    and a StripeInterval 'Example Interval'
    When I go to the StripeInterval view
-   Then I can see the StripeInterval title 'My StripeInterval'
+   Then I can see the StripeInterval title 'Example Interval'
 
 
 *** Keywords *****************************************************************
@@ -55,11 +59,17 @@ Scenario: As a site administrator I can view a StripeInterval
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
-an add StripePlan form
-  Go To  ${PLONE_URL}/++add++StripePlan
+a StripeProduct 'Example Product'
+  Create content  type=StripeProduct  id=example-product  title=Example Product
 
-a StripeInterval 'My StripeInterval'
-  Create content  type=StripePlan  id=my-stripeinterval  title=My StripeInterval
+a StripePlan 'Example Plan'
+  Create content  type=StripePlan  id=example-plan  title=Example Plan  container=/plone/example-product
+
+an add StripeInterval form
+  Go To  ${PLONE_URL}/example-product/example-plan/++add++StripeInterval
+
+a StripeInterval 'Example Interval'
+  Create content  type=StripeInterval  id=example-interval  title=Example Interval  container=/plone/example-product/example-plan
 
 # --- WHEN -------------------------------------------------------------------
 
@@ -70,7 +80,7 @@ I submit the form
   Click Button  Save
 
 I go to the StripeInterval view
-  Go To  ${PLONE_URL}/my-stripeinterval
+  Go To  ${PLONE_URL}/example-product/example-plan/example-interval
   Wait until page contains  Site Map
 
 
