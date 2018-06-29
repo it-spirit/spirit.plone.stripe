@@ -1,12 +1,22 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
   xmlns:zcml="http://namespaces.zope.org/zcml"
-  i18n_domain="plone">
+  i18n_domain="spirit.plone.stripe">
 
   <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
+    <permission
+        id="spirit.plone.stripe.AddStripeProduct"
+        title="spirit.plone.stripe: Add StripeProduct"
+        />
 
+    <permission
+        id="spirit.plone.stripe.AddStripePlan"
+        title="spirit.plone.stripe: Add StripePlan"
+        />
 
+    <permission
+        id="spirit.plone.stripe.AddStripeinterval"
+        title="spirit.plone.stripe: Add Stripeinterval"
+        />
   </configure>
-
 </configure>

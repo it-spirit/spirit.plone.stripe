@@ -16,8 +16,9 @@ long_description = '\n\n'.join([
 install_requires = [
     'setuptools',
     # -*- Extra requirements: -*-
-    'Products.GenericSetup>=1.8.2',
     'plone.api',
+    'plone.app.dexterity',
+    'Products.GenericSetup>=1.8.2',
 ]
 
 testfixture_requires = [
