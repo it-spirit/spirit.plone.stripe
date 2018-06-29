@@ -14,7 +14,7 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot /src/spirit/plone/stripe/tests/robot/test_setup.robot
+# $ bin/robot -d /tmp -r NONE -l NONE -o NONE src/spirit/plone/stripe/tests/robot/test_setup.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).

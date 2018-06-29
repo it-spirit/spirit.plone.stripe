@@ -14,7 +14,7 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot /src/spirit/plone/stripe/tests/robot/test_stripeinterval.robot
+# $ bin/robot -d /tmp -r NONE -l NONE -o NONE src/spirit/plone/stripe/tests/robot/test_ct_stripe_interval.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).
