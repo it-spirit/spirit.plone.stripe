@@ -23,8 +23,7 @@
 
 *** Settings *****************************************************************
 
-Resource  plone/app/robotframework/selenium.robot
-Resource  plone/app/robotframework/keywords.robot
+Resource  keywords.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
@@ -39,8 +38,11 @@ Scenario: As a site administrator I can add a Stripe Plan
     and a StripeProduct 'Example Product'
     and an add StripePlan form
    When I type 'My Stripe Plan' into the title field
+    and I take a screenshot 'ct_stripe_plan_add_form'
     and I submit the form
    Then a StripePlan with the title 'My Stripe Plan' has been created
+    and I take a screenshot 'ct_stripe_plan_added'
+    and I remove the content with id 'example-product'
 
 Scenario: As a site administrator I can view a Stripe Plan
   Given a logged-in site administrator
@@ -48,6 +50,7 @@ Scenario: As a site administrator I can view a Stripe Plan
     and a StripePlan 'Example Plan'
    When I go to the StripePlan view
    Then I can see the StripePlan title 'Example Plan'
+    and I remove the content with id 'example-product'
 
 
 *** Keywords *****************************************************************

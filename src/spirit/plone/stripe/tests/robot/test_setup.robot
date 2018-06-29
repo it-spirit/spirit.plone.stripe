@@ -23,9 +23,7 @@
 
 *** Settings *****************************************************************
 
-Resource  plone/app/robotframework/selenium.robot
-Resource  plone/app/robotframework/keywords.robot
-Resource  Selenium2Screenshots/keywords.robot
+Resource  keywords.robot
 
 
 Library  Remote  ${PLONE_URL}/RobotRemote

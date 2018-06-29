@@ -23,8 +23,7 @@
 
 *** Settings *****************************************************************
 
-Resource  plone/app/robotframework/selenium.robot
-Resource  plone/app/robotframework/keywords.robot
+Resource  keywords.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
@@ -40,8 +39,11 @@ Scenario: As a site administrator I can add a StripeInterval
     and a StripePlan 'Example Plan'
     and an add StripeInterval form
    When I type 'My Stripe Interval' into the title field
+    and I take a screenshot 'ct_stripe_interval_add_form'
     and I submit the form
    Then a StripeInterval with the title 'My Stripe Interval' has been created
+    and I take a screenshot 'ct_stripe_interval_added'
+    and I remove the content with id 'example-product'
 
 Scenario: As a site administrator I can view a StripeInterval
   Given a logged-in site administrator
@@ -50,6 +52,7 @@ Scenario: As a site administrator I can view a StripeInterval
     and a StripeInterval 'Example Interval'
    When I go to the StripeInterval view
    Then I can see the StripeInterval title 'Example Interval'
+    and I remove the content with id 'example-product'
 
 
 *** Keywords *****************************************************************
