@@ -36,16 +36,16 @@ Test Teardown  Close all browsers
 
 Scenario: As a site administrator I can add a Stripe Product
   Given a logged-in site administrator
-    and an add Stripe Product form
+    and an add StripeProduct form
    When I type 'My Stripe Product' into the title field
     and I submit the form
    Then a Stripe Product with the title 'My Stripe Product' has been created
 
 Scenario: As a site administrator I can view a Stripe Product
   Given a logged-in site administrator
-    and a Stripe Product 'My Stripe Product'
-   When I go to the Stripe Product view
-   Then I can see the Stripe Product title 'My Stripe Product'
+    and a Stripe Product 'Example Product'
+   When I go to the StripeProduct view
+   Then I can see the StripeProduct title 'Example Product'
 
 
 *** Keywords *****************************************************************
@@ -55,11 +55,11 @@ Scenario: As a site administrator I can view a Stripe Product
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
-an add Stripe Product form
+an add StripeProduct form
   Go To  ${PLONE_URL}/++add++StripeProduct
 
-a Stripe Product 'My Stripe Product'
-  Create content  type=Stripe Product  id=my-stripe_product  title=My Stripe Product
+a Stripe Product 'Example Product'
+  Create content  type=StripeProduct  id=example-product  title=Example Product
 
 # --- WHEN -------------------------------------------------------------------
 
@@ -69,8 +69,8 @@ I type '${title}' into the title field
 I submit the form
   Click Button  Save
 
-I go to the Stripe Product view
-  Go To  ${PLONE_URL}/my-stripe_product
+I go to the StripeProduct view
+  Go To  ${PLONE_URL}/example-product
   Wait until page contains  Site Map
 
 
@@ -81,6 +81,6 @@ a Stripe Product with the title '${title}' has been created
   Page should contain  ${title}
   Page should contain  Item created
 
-I can see the Stripe Product title '${title}'
+I can see the StripeProduct title '${title}'
   Wait until page contains  Site Map
   Page should contain  ${title}
