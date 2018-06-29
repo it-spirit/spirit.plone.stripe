@@ -36,16 +36,18 @@ Test Teardown  Close all browsers
 
 Scenario: As a site administrator I can add a Stripe Plan
   Given a logged-in site administrator
-    and an add Stripe Product form
+    and a StripeProduct 'Example Product'
+    and an add StripePlan form
    When I type 'My Stripe Plan' into the title field
     and I submit the form
-   Then a Stripe Plan with the title 'My Stripe Plan' has been created
+   Then a StripePlan with the title 'My Stripe Plan' has been created
 
 Scenario: As a site administrator I can view a Stripe Plan
   Given a logged-in site administrator
-    and a Stripe Plan 'My Stripe Plan'
-   When I go to the Stripe Plan view
-   Then I can see the Stripe Plan title 'My Stripe Plan'
+    and a StripeProduct 'Example Product'
+    and a StripePlan 'Example Plan'
+   When I go to the StripePlan view
+   Then I can see the StripePlan title 'Example Plan'
 
 
 *** Keywords *****************************************************************
@@ -55,11 +57,14 @@ Scenario: As a site administrator I can view a Stripe Plan
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
-an add Stripe Product form
-  Go To  ${PLONE_URL}/++add++StripeProduct
+a StripeProduct 'Example Product'
+  Create content  type=StripeProduct  id=example-product  title=Example Product
 
-a Stripe Plan 'My Stripe Plan'
-  Create content  type=Stripe Product  id=my-stripe_plan  title=My Stripe Plan
+an add StripePlan form
+  Go To  ${PLONE_URL}/example-product/++add++StripePlan
+
+a StripePlan 'Example Plan'
+  Create content  type=StripePlan  id=example-plan  title=Example Plan  container=/plone/example-product
 
 # --- WHEN -------------------------------------------------------------------
 
@@ -69,18 +74,18 @@ I type '${title}' into the title field
 I submit the form
   Click Button  Save
 
-I go to the Stripe Plan view
-  Go To  ${PLONE_URL}/my-stripe_plan
+I go to the StripePlan view
+  Go To  ${PLONE_URL}/example-product/example-plan
   Wait until page contains  Site Map
 
 
 # --- THEN -------------------------------------------------------------------
 
-a Stripe Plan with the title '${title}' has been created
+a StripePlan with the title '${title}' has been created
   Wait until page contains  Site Map
   Page should contain  ${title}
   Page should contain  Item created
 
-I can see the Stripe Plan title '${title}'
+I can see the StripePlan title '${title}'
   Wait until page contains  Site Map
   Page should contain  ${title}
