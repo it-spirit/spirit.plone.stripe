@@ -66,3 +66,5 @@ Show how to activate the add-on
     Capture and crop page screenshot
     ...  setup_select_add_on_installable.png
     ...  id=addons-enabled
+
+    Click button  xpath=//*[@value='spirit.plone.stripe']/ancestor::form//input[@type='submit']
